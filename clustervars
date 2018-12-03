@@ -13,4 +13,4 @@ export LDAP_ROOT_DC=sebc
 export LDAP_SEARCH_BASE=dc=sebc,dc=org
 
 export KERBEROS_SERVER=bvt-sebc-1.vpc.cloudera.com
-export KERBEROS_REALM=${DOMAIN}
+export KERBEROS_REALM=MYSEBC.ORG
