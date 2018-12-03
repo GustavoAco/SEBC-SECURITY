@@ -1,3 +1,4 @@
-bvt-sebc-1.vpc.cloudera.com
-bvt-sebc-2.vpc.cloudera.com
-bvt-sebc-3.vpc.cloudera.com
+master.ricohits.ga
+cloudermanager.ricohits.ga
+worker1.ricohits.ga
+worker2.ricohits.ga
