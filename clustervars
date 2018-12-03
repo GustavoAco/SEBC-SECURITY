@@ -8,7 +8,7 @@ export ORGUNIT='IT'
 export EMAIL=root@${DOMAIN}
 export CERTS=/etc/openldap/certs
 
-export LDAP_SERVER=bvt-sebc-1.vpc.cloudera.com
+export LDAP_SERVER=master.ricohits.ga
 export LDAP_ROOT_DC=sebc
 export LDAP_SEARCH_BASE=dc=sebc,dc=org
 
