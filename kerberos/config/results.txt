@@ -1,0 +1,11 @@
+[root@master ~]# kinit cloudera-scm@MYSEBC.ORG
+Password for cloudera-scm@MYSEBC.ORG:
+[root@master ~]#kinit user1@MYSEBC.ORG
+Password for user1@MYSEBC.ORG:
+[root@master ~]#kinit user2@MYSEBC.ORG
+Password for user2@MYSEBC.ORG:
+[root@master ~]#kinit user3@MYSEBC.ORG
+Password for user3@MYSEBC.ORG:
+[root@master ~]#kinit user4@MYSEBC.ORG
+Password for user4@MYSEBC.ORG:
+
