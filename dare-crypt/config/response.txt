@@ -15,5 +15,9 @@ si se encriptara todo con la misma llaves ,si esta será diferente por sub carpe
 8.-Moveremos la data a otro directorio temporal  pra habilitar despues la encryptacion sobre el warehouse de hive ,no estara disponible hive en este momento ,con un usuario con permisos en la carpeta user/hive/warehouse
   $hdfs dfs -mv /user/hive/warehouse/* /backupwarehousetmp
 9.- Creamos zona encryptada 
-$ 
-
+  $ hdfs crypto -createZone -keyName keytrustee_warehouse -path /user/hive/warehouse
+  verificamos que se haya creado la zona 
+  $ hdfs crypto -listZones
+/user/hive/warehouse    keytrustee_warehouse
+10.- Moveremos de regreso la data a warehouse 
+  $hadoop distcp /backupwarehousetmp /user/hive/wharehouse
