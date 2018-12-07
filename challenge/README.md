@@ -1,13 +1,14 @@
 # Security Challenge
 
  Proof that no sssd, kerberos, tls, etc. are created
- <li><a href="EVIDENCIA_KERBEROS-SSD.png">KERBEROOS SSSD</a></li>
-<li><a href="EVIDENCIA_TLS.png">TLS</a></li>
-
+ <a href="EVIDENCIA_KERBEROS-SSD.png">KERBEROOS SSSD</a>
+<a href="EVIDENCIA_TLS.png">TLS</a>
 - Send me FQDNs of hosts I will issue certs
 
 - Kerberize cluster
-
+<a href="kdc.conf">kdc.conf</a>
+<a href="kadm5.acl">kadm5.acl</a>
+<a href="kdc.conf">kdc.conf</a>
 - Enable TLS for CM, CM agents, Hive, HDFS (including DNs), and YARN!
 
 - You have an organization that consists of two lines of business:
