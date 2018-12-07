@@ -45,7 +45,7 @@
 
 
 - Describe what is required to ensure data is encrypted and ensure managers and analysts can read data from HDFS and Hive
-Tener habilitado HDFS Transparent Encryption en el clúster con todas sus dependecias (KMS KTS),cifrar carpeta warehouse
+<br>Tener habilitado HDFS Transparent Encryption en el clúster con todas sus dependecias (KMS KTS),cifrar carpeta warehouse
 por subcarpeta con nombre de base de datos de cada area ,para asi restringir el acceso a nivel hdfs ,y compartir los acl 
 para que quien pueda leer lea
 
