@@ -1,0 +1,100 @@
+ beeline -u "jdbc:hive2://clouderamanager.ricohits.ga:10000/default;principal=hive/_HOST@MYSEBC.ORG;ssl=true;sslTrustStore=/opt/cloudera/security/jks/truststore.jks;trustStorePassword=passw0rd;"
+ 
+ ------------------------------------------------------CREANDO ROL ADMINS------------------------------------------------------------------
+ 0: jdbc:hive2://clouderamanager.ricohits.ga:1> CREATE ROLE admins;
+--------------------------------------------------------ASIGNANDO ROL ADMINS A GRUPO ADMINS------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT ROLE admins TO GROUP admins;
+----------------------------------------------------------ASIGANDO PRIVILEGIOS ADMINISTRADOR ROL admins------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT ALL ON SERVER server1 TO ROLE admins;
+--------------------------------------------------------CREANTO TABLAS---------------------------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> CREATE TABLE IF NOT EXISTS table1(EmployeeID INT,FirstName STRING, Title STRING, State STRING, Laptop STRING)COMMENT 'Employee Names' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' STORED AS TEXTFILE;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> CREATE TABLE IF NOT EXISTS table2(EmployeeID INT,FirstName STRING, Title STRING, State STRING, Mobile STRING)COMMENT 'Employee Names' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' STORED AS TEXTFILE;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> show tables;
+INFO  : Compiling command(queryId=hive_20181206185144_0cb78774-4165-487b-a2c3-47e33ca84b05): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20181206185144_0cb78774-4165-487b-a2c3-47e33ca84b05); Time taken: 0.083 seconds
+INFO  : Executing command(queryId=hive_20181206185144_0cb78774-4165-487b-a2c3-47e33ca84b05): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20181206185144_0cb78774-4165-487b-a2c3-47e33ca84b05); Time taken: 0.197 seconds
+INFO  : OK
++-----------+
+| tab_name  |
++-----------+
+| table1    |
+| table2    |
++-----------+
+
+--------------------------------------------------------CREANTO ROLES---------------------------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> CREATE ROLE managers;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> CREATE ROLE analysts;
+
+--------------------------------------------------------ASIGNANDO ROLES Y PERMISOS --------------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT ROLE analysts TO GROUP analysts;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT ROLE managers TO GROUP managers;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT ALL ON table1 to  role managers;
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> GRANT SELECT ON table2 to  role analysts;
+--------------------------------------------Accediendo como usuer1-----------------------------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> select * from table1;
+INFO  : Compiling command(queryId=hive_20181206191508_2c9f949f-bf3c-4dd5-b898-92a01e8f6a67): select * from table1
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:table1.employeeid, type:int, comment:null), FieldSchema(name:table1.firstname, type:string, comment:null), FieldSchema(name:table1.title, type:string, comment:null), FieldSchema(name:table1.state, type:string, comment:null), FieldSchema(name:table1.laptop, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20181206191508_2c9f949f-bf3c-4dd5-b898-92a01e8f6a67); Time taken: 0.426 seconds
+INFO  : Executing command(queryId=hive_20181206191508_2c9f949f-bf3c-4dd5-b898-92a01e8f6a67): select * from table1
+INFO  : Completed executing command(queryId=hive_20181206191508_2c9f949f-bf3c-4dd5-b898-92a01e8f6a67); Time taken: 0.002 seconds
+INFO  : OK
++--------------------+-------------------+---------------+---------------+----------------+
+| table1.employeeid  | table1.firstname  | table1.title  | table1.state  | table1.laptop  |
++--------------------+-------------------+---------------+---------------+----------------+
+| 10                 | Andrew            | Manager       | DE            | PC             |
+| 11                 | Arun              | Manager       | NJ            | PC             |
+| 12                 | Harish            | Sales         | NJ            | MAC            |
+| 13                 | Robert            | Manager       | PA            | MAC            |
+| 14                 | Laura             | Engineer      | PA            | MAC            |
++--------------------+-------------------+---------------+---------------+----------------+
+5 rows selected (0.633 seconds)
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> select * from table2;
+Error: Error while compiling statement: FAILED: SemanticException No valid privileges
+ User user1 does not have privileges for QUERY
+ The required privileges: Server=server1->Db=default->Table=table2->Column=employeeid->action=select; (state=42000,code=40000)
+0: jdbc:hive2://clouderamanager.ricohits.ga:1>
+
+--------------------------------------------Accediendo como user2-----------------------------------------------------------------------
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> select * from table1;
+Error: Error while compiling statement: FAILED: SemanticException No valid privileges
+ User user2 does not have privileges for QUERY
+ The required privileges: Server=server1->Db=default->Table=table1->Column=employeeid->action=select; (state=42000,code=40000)
+
+
+0: jdbc:hive2://clouderamanager.ricohits.ga:1> select * from table2;
+INFO  : Compiling command(queryId=hive_20181206191814_a97c3f9a-f162-401a-9e94-79a34e22ef77): select * from table2
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:table2.employeeid, type:int, comment:null), FieldSchema(name:table2.firstname, type:string, comment:null), FieldSchema(name:table2.title, type:string, comment:null), FieldSchema(name:table2.state, type:string, comment:null), FieldSchema(name:table2.mobile, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20181206191814_a97c3f9a-f162-401a-9e94-79a34e22ef77); Time taken: 0.419 seconds
+INFO  : Executing command(queryId=hive_20181206191814_a97c3f9a-f162-401a-9e94-79a34e22ef77): select * from table2
+INFO  : Completed executing command(queryId=hive_20181206191814_a97c3f9a-f162-401a-9e94-79a34e22ef77); Time taken: 0.002 seconds
+INFO  : OK
++--------------------+-------------------+---------------+---------------+----------------+
+| table2.employeeid  | table2.firstname  | table2.title  | table2.state  | table2.mobile  |
++--------------------+-------------------+---------------+---------------+----------------+
+| 14                 | Andrew            | Manager       | DE            | ANDROID        |
+| 12                 | Arun              | Manager       | NJ            | IOS            |
+| 16                 | Harish            | Sales         | NJ            | BB             |
+| 90                 | Robert            | Manager       | PA            | ANDROID        |
+| 19                 | Laura             | Engineer      | PA            | IOS            |
++--------------------+-------------------+---------------+---------------+----------------+
+5 rows selected (0.597 seconds)
+
+
+
+
+
+
+
