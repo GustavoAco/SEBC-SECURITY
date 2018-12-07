@@ -1,6 +1,8 @@
 # Security Challenge
 
  Proof that no sssd, kerberos, tls, etc. are created
+ <li><a href="EVIDENCIA_KERBEROS-SSD.png">KERBEROOS SSSD</a></li>
+<li><a href="EVIDENCIA_TLS.png">TLS</a></li>
 
 - Send me FQDNs of hosts I will issue certs
 
