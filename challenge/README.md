@@ -18,6 +18,10 @@
     - HR
 
 - The organization has TWO types of roles PER line of business: managers and analysts
+<li>CREATE ROLE managers;</li>
+<li>GRANT ROLE managers TO GROUP managers;</li>
+<li>CREATE ROLE analysts;</li>
+<li>GRANT ROLE analysts; TO GROUP analysts;</li>
 
 - EACH line of business has a SINGLE managed database named after itself
 
