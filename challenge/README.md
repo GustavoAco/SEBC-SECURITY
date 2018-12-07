@@ -12,6 +12,7 @@
 - Enable TLS for CM, CM agents, Hive, HDFS (including DNs), and YARN!
 <br><a href="https.png">https</a>
 <br><a href="config.ini">Config.ini</a>
+<br><a href="tlshost.PNG">Green Agentes</a>
 - You have an organization that consists of two lines of business:
 
     - Finance
