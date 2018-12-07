@@ -1,9 +1,19 @@
-1.-Primero hay que tener claro si el cliente tiene disponible más de 40 TB fuera de /user/hive/warehouse 
+1.-Primero se debe tener claro si el cliente tiene disponible más de 40 TB fuera de /user/hive/warehouse 
 si se encriptara todo con la misma llaves ,si esta será diferente por sub carpetas de wharehouse podria realizarse moviendo los datos fuer de la sub carpeta de wharehouse poco a poco.
 2.-Definir en que carpeta fuera de wharehouse se movera la data ,ya que para el encryptado debe quedar vacio el directorio 
-3.-Instalar los roles necesarios KMS Y KTS ,con servidores de dicados a estos por dos para habilitar alta dispoibilidad
+3.-Instalar los roles necesarios KMS Y KTS ,con servidores de dicados a estos por dos para habilitar alta dispoibilidad ,teniendo habilitado kerberos tls ldap.
 4.Instalando dependencias en todos los hosts que tengan roles hdfs o cualquier host que necesite comunicarce con hdfs
    4.1-Instalar $ sudo yum install openssl-devel
    4.2-Descargar la ultima version de libcrypto.so  ,extraer e instalar en la sigueinte ruta var/lib/hadoop/extra/native/
 5. Hay que probar si la optimización de cifrado funciona
     $hadoop checknative
+6.habilitar Set up HDFS Data At Rest Encryption en la pestaña de opciones en el cluster en cloudera manager se necesitará un rol de administrador 
+   6.1-Como en los pasos anteriores instalamos KTS ,en el wizard de ENCRYPTION usaremos la opción  Cloudera Navigator Key Trustee Server
+7.-Crearemos las llave necesaria 
+  $ sudo -u adminkeys hadoop key create keytrustee_warehouse
+  $ hadoop key list
+8.-Moveremos la data a otro directorio temporal  pra habilitar despues la encryptacion sobre el warehouse de hive ,no estara disponible hive en este momento ,con un usuario con permisos en la carpeta user/hive/warehouse
+  $hdfs dfs -mv /user/hive/warehouse/* /backupwarehousetmp
+9.- Creamos zona encryptada 
+$ 
+
