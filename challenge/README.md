@@ -39,3 +39,4 @@
 - Describe the capabilities of Navigator Audit, Lineage, and Metadata. What is it useful for?
 
 - Which technology would you use for encrypting Kafka, Kudu and Flume volumes?
+Navigator Encrypt
