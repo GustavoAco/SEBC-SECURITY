@@ -1,1 +1,9 @@
-Add your response here
+1.-Primero hay que tener claro si el cliente tiene disponible más de 40 TB fuera de /user/hive/warehouse 
+si se encriptara todo con la misma llaves ,si esta será diferente por sub carpetas de wharehouse podria realizarse moviendo los datos fuer de la sub carpeta de wharehouse poco a poco.
+2.-Definir en que carpeta fuera de wharehouse se movera la data ,ya que para el encryptado debe quedar vacio el directorio 
+3.-Instalar los roles necesarios KMS Y KTS ,con servidores de dicados a estos por dos para habilitar alta dispoibilidad
+4.Instalando dependencias en todos los hosts que tengan roles hdfs o cualquier host que necesite comunicarce con hdfs
+   4.1-Instalar $ sudo yum install openssl-devel
+   4.2-Descargar la ultima version de libcrypto.so  ,extraer e instalar en la sigueinte ruta var/lib/hadoop/extra/native/
+5. Hay que probar si la optimización de cifrado funciona
+    $hadoop checknative
