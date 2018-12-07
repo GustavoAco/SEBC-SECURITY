@@ -10,8 +10,8 @@
 <a href="kadm5.acl">kadm5.acl</a>
 <a href="kdc.conf">kdc.conf</a>
 - Enable TLS for CM, CM agents, Hive, HDFS (including DNs), and YARN!
-<a href="https.png">https</a>
-
+<br><a href="https.png">https</a>
+<br><a href="config.ini">Config.ini</a>
 - You have an organization that consists of two lines of business:
 
     - Finance
