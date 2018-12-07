@@ -13,6 +13,7 @@
 <br><a href="https.png">https</a>
 <br><a href="config.ini">Config.ini</a>
 <br><a href="tlshost.PNG">Green Agentes</a>
+<br><a href="confhive.PNG">Config TLS HIVE</a>
 - You have an organization that consists of two lines of business:
 
     - Finance
